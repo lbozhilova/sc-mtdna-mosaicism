@@ -2,7 +2,7 @@
 ##### Summary statistics and other analysis #####
 #################################################
 
-# Last edited: 25/04/23 by LVB
+# Last edited: 29/06/23 by LVB
 
 # Description: Summary statistics and other analysis which appears ad-hoc in the
 # paper and SI.
@@ -98,6 +98,7 @@ sc_df %>%
 # m.5024C>T P100 test single-cell distributions within the same tissue
 get_cell_type_pval <- function(het, cell_type) {
   x <- split(het, cell_type, drop = T)
+  if (length(x) == 1) return(NA)
   ks.test(x[[1]], x[[2]])$p.value
 }
 sc_df %>% 
@@ -106,6 +107,16 @@ sc_df %>%
   summarise(pval = get_cell_type_pval(het, cell_type)) %>% 
   group_by(tissue) %>% 
   summarise(min_pval = min(pval))
+
+# Table S1. All >E8.5 test single-cell distributions within the same tissue 
+table_s1 <- sc_df %>% 
+  group_by(mutation, day, mouse, tissue) %>% 
+  summarise(n = n(),
+            pval = get_cell_type_pval(het, cell_type)) %>% 
+  group_by(tissue) %>% 
+  mutate(is_significant = (pval < 0.05 / n())) %>% 
+  mutate(pval = round(pval, 3))
+write_csv(table_s1, "data/parsed/05-tabS1.csv")
 
 #----- Normalised heteroplasmy variance
 nvar <- function(H) {H <- .01 * H; var(H) / (mean(H) * (1 - mean(H)))}
