@@ -2,7 +2,7 @@
 ##### Figures #####
 ###################
 
-# Last edited: 11/04/23 by LVB
+# Last edited: 17/06/23 by LVB
 
 # Description: Manuscript and SI figures and tables. 
 
@@ -394,19 +394,19 @@ fig_s4
 
 plot_save(fig_s4, "figures/04-figS4.jpg", ar = 3)
 
-#----- SI: Tables S1 & S2
-tab_s12 <- sc_kimura_fits[, c("mutation", "day", "mouse", "tissue", "cell_type",
+#----- SI: Tables S3 & S4
+tab_s34 <- sc_kimura_fits[, c("mutation", "day", "mouse", "tissue", "cell_type",
                         "kimura_p", "kimura_b", "p.value")] %>% 
   mutate_if(is.numeric, function(x) round(x, 3)) %>% 
   mutate(mouse = mouse_labs[mouse],
          tissue = tissue_labs[tissue],
          cell_type = str_replace(cell_labs[cell_type], "\n", " "))
 
-write_csv(tab_s12, "data/parsed/04-tabS12.csv")
+write_csv(tab_s34, "data/parsed/04-tabS34.csv")
 
-#----- SI: Table S3
-tab_s3 <- summary(model_best)$coefficients %>% 
+#----- SI: Table S5
+tab_s5 <- summary(model_best)$coefficients %>% 
   as.data.frame %>% 
   rownames_to_column("Name")
 
-write_csv(tab_s3, "data/parsed/04-tabS3.csv")
+write_csv(tab_s5, "data/parsed/04-tabS5.csv")
