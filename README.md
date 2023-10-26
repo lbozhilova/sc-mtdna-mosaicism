@@ -1,6 +1,6 @@
 # High-throughput single cell analysis reveals progressive mitochondrial DNA mosaicism throughout life
 
-This repository contains all scripts necessary to reproduce the data analysis and figures presented in Glynos _et al._ (2023).
+This repository contains all scripts necessary to reproduce the data analysis and figures presented in [Glynos _et al._ (2023)](https://www.science.org/doi/10.1126/sciadv.adi4038).
 
 ## Software requirements
 
@@ -47,4 +47,4 @@ Scripts `01-05` should principally be run in numerical order from the parent dir
 
 If you use any of the code, methods or data presented here, please cite us:
 
-A. Glynos, L. V. Bozhilova, M. Frison, S. Burr, J. B. Stewart, and P. F. Chinnery, "High-throughput single cell analysis reveals progressive mitochondrial DNA mosaicism throughout life," _JOURNAL_ ISSUE (YEAR)
+A. Glynos, L. V. Bozhilova, M. Frison, S. Burr, J. B. Stewart, and P. F. Chinnery, "High-throughput single cell analysis reveals progressive mitochondrial DNA mosaicism throughout life," _Science Advances_ 9,eadi4038 (2023)
